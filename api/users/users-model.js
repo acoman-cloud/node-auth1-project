@@ -17,7 +17,10 @@ function findBy(filter) {
   resolves to the user { user_id, username } with the given user_id
  */
 function findById(user_id) {
-  return db('users').where('user_id', user_id).select('user_id', 'username').first()
+  return db('users')
+    .where('user_id', user_id)
+    .select('user_id', 'username')
+    .first()
 }
 
 /**
@@ -25,7 +28,6 @@ function findById(user_id) {
  */
 async function add(user) {
   const [id] = await db('users').insert(user)
-
   return findById(id)
 }
 
